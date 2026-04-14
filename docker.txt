@@ -1,0 +1,42 @@
+docker pull jzang/user-service:latest
+docker run -d \
+  --name user-service \
+  --env-file user-service.env \
+  -p 8081:8081 \
+  jzang/user-service:latest
+
+docker pull jzang/food-service:latest
+docker run -d \
+  --name food-service \
+  --env-file food-service.env \
+  -p 8082:8082 \
+  jzang/food-service:latest
+
+docker pull jzang/order-service:latest
+docker run -d \
+  --name order-service \
+  --env-file order-service.env \
+  -p 8083:8083 \
+  jzang/order-service:latest
+
+docker pull jzang/payment-service:latest
+docker run -d \
+  --name payment-service \
+  --env-file payment-service.env \
+  -p 8084:8084 \
+  jzang/payment-service:latest
+
+docker pull jzang/api-gateway:latest
+docker run -d \
+  --name api-gateway \
+  --env-file api-gateway.env \
+  -p 8080:8080 \
+  jzang/api-gateway:latest
+
+
+docker pull jzang/api-gateway:latest
+docker run -d \
+  --name api-gateway \
+  --env-file api-gateway.env \
+  -p 8080:8080 \
+  jzang/api-gateway:latest

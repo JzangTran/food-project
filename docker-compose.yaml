@@ -1,10 +1,23 @@
+version: "3.9"
+
 services:
-  database:
-    container_name: ms_iam_database
-    image: postgres:18
-    env_file:
-      -
+  postgres:
+    image: postgres:16
+    container_name: food-ordering-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: food_ordering
     ports:
-      - "5432:5432"
+      - "5555:5432"
     volumes:
-      - D:/foot:/var/lib/postgresql
+      - /opt/food-ordering/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d food_ordering"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
